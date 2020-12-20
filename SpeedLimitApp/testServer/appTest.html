@@ -1,0 +1,223 @@
+<html>
+<style>
+   *{
+  margin : 0;
+  padding : 0;
+}
+body {
+    height: 100vh;
+    background-color: #000;
+    font-family: 'Roboto',sans-serif;
+    background: linear-gradient(180deg,#DB302A 0%,#62186B 100%) no-repeat;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.box-minmax{
+  margin-top: 30px;
+  width: 608px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  color: #FFFFFF;
+  span:first-child{
+    margin-left: 10px;
+  }
+}
+.range-slider {
+   
+    
+}
+.rs-range {
+    margin-top: 29px;
+    width: 600px;
+    -webkit-appearance: none;
+    &:focus {
+        outline: none;
+    }
+    &::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 1px;
+        cursor: pointer;
+        box-shadow: none;
+        background: #ffffff;
+        border-radius: 0px;
+        border: 0px solid #010101;
+    }
+    &::-moz-range-track {
+        width: 100%;
+        height: 1px;
+        cursor: pointer;
+        box-shadow: none;
+        background: #ffffff;
+        border-radius: 0px;
+        border: 0px solid #010101;
+    }
+  
+    &::-webkit-slider-thumb {
+        box-shadow: none;
+        border: 0px solid #ffffff;
+        box-shadow: 0px 10px 10px rgba(0,0,0,0.25);
+        height: 42px;
+        width: 22px;
+        border-radius: 22px;
+        background: rgba(255,255,255,1);
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -20px;
+    }
+  &::-moz-range-thumb{
+        box-shadow: none;
+        border: 0px solid #ffffff;
+        box-shadow: 0px 10px 10px rgba(0,0,0,0.25);
+        height: 42px;
+        width: 22px;
+        border-radius: 22px;
+        background: rgba(255,255,255,1);
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -20px;
+  }
+  &::-moz-focus-outer {
+    border: 0;
+    }
+}
+.rs-label {
+    
+    position: relative;
+    transform-origin: center center;
+    display: block;
+    width: 98px;
+    height: 98px;
+    background: transparent;
+    border-radius: 50%;
+    line-height: 30px;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 22px;
+    box-sizing: border-box;
+    border: 2px solid #fff;
+    margin-top: 20px;
+    margin-left: -38px;
+    left: attr(value);
+    color: #fff;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 30px;
+    &::after {
+        content: "kg";
+        display: block;
+        font-size: 10px;
+        letter-spacing: 0.07em;
+        margin-top: -2px;
+    }
+    
+}
+</style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></style>
+<body>
+
+       
+        <div class="container">
+                <div class="align-items-center" style="color: white"><h1>Speed Limit Alertness App - Test data Control</h1></div>
+                <hr class="hr-primary" />
+                <div class="align-items-center">
+                <div class="range-slider">
+                        <h3 style="color: white;"> Set car speed </h3>
+                  <span id="rs-bullet1" class="rs-label">0</span>
+                  <input id="rs-range-line1" class="rs-range" type="range" value="0" min="0" max="200">
+                  
+                </div>
+                
+                <div class="range-slider2">
+                        <h3 style="color: white;"> Set road speed limit </h3>
+                        <span id="rs-bullet2" class="rs-label">0</span>
+                        <input id="rs-range-line2" class="rs-range" type="range" value="0" min="0" max="200">
+                        
+                      </div>
+                
+                <div class="box-minmax">
+                  <span>0</span><span>200</span>
+                </div>
+                <select id="loc">
+                        <option value="nHighway">National Highway</option>
+                        <option value="service-road">Service Road</option>
+                        <option value="cityLimits">City Limits</option>
+                        <option value="stateHighway">State Highway</option>
+                      </select> 
+              </div>
+            </div>
+
+
+
+</body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+var carSpeed = document.getElementById("rs-range-line1");
+var carSpeedBullet = document.getElementById("rs-bullet1");
+
+var roadSpeed = document.getElementById("rs-range-line2");
+var roadSpeedBullet = document.getElementById("rs-bullet2");
+
+carSpeed.addEventListener("input", showSliderValue1, false);
+roadSpeed.addEventListener("input", showSliderValue2, false);
+function showSliderValue1() {
+    carSpeedBullet.innerHTML = carSpeed.value + "km/h";
+  var bulletPosition1 = (carSpeed.value /carSpeed.max);
+  carSpeedBullet.style.left = (bulletPosition1 * 578) + "px";
+  
+}
+function showSliderValue2() {
+  
+  roadSpeedBullet.innerHTML = roadSpeed.value + "km/h";
+  var bulletPosition2 = (roadSpeed.value /roadSpeed.max);
+  roadSpeedBullet.style.left = (bulletPosition2 * 578) + "px";
+}
+
+
+
+
+
+var slider = document.getElementById("speedInput")
+var loc = document.getElementById("loc")
+carSpeed.onchange = function(){
+  onC();
+}
+
+roadSpeed.onchange = function(){
+    onC();
+}
+
+function onC(){
+    var slider = document.getElementById("speedInput")
+    var slider2 = document.getElementById("speedLimitInput")
+    var loc = document.getElementById("loc")
+    var f = "inputs.txt";
+   
+   
+$.ajax({
+    type: "GET",
+    url: "server.php",
+    data: {
+        uSpeed : carSpeed.value,
+        speedLimit : roadSpeed.value,
+        road : loc.value
+    },
+    success: function (data) {
+         console.log(data)
+        }
+    
+});
+   
+
+
+    console.log(slider.value);
+    console.log(document.getElementById("loc").value);
+}
+</script>
+
+</html>

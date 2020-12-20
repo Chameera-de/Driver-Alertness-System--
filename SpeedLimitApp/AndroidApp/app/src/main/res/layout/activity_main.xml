@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@drawable/animation_background"
+    android:id="@+id/frameID">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal|center"
+    >
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your speed is:"
+        android:textSize="30sp"
+        android:gravity="center_vertical|center_horizontal|center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|center_horizontal|center">
+        <ImageView
+            android:id="@+id/iV"
+            android:maxHeight="70sp"
+            android:maxWidth="80sp"
+            android:adjustViewBounds="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    <TextView
+        android:id="@+id/yourSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.0"
+        android:textSize="100sp" />
+        <TextView
+            android:id="@+id/txt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="km/h"
+            android:textSize="50sp" />
+
+
+
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="25dp">
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Request Location"
+        />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Coordinates: "
+        android:textSize="30sp" />
+
+
+
+    <TextView
+        android:id="@+id/suggestedSpeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Coordinates: "
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/road"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Coordinates: "
+        android:textSize="30sp" />
+</LinearLayout>
+</LinearLayout>
+
+
+</FrameLayout>
